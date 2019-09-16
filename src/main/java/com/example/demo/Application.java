@@ -18,7 +18,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.domain.User;
-import com.example.demo.validation.PrimaryUserInfo;
+import com.example.demo.validation.ContactInfoGroup;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner{
@@ -38,7 +38,7 @@ public class Application implements CommandLineRunner{
 		User user = new User(); 				
 
 		user.setUsername("Johnsmith");
-		user.setEmail("johm@gmailDOTcom");
+		user.setEmail("johmATgmail.com");
 		user.setActive(false);
 		user.setPhone("000-444-5555");
 		user.setFirstName(null);
@@ -50,7 +50,7 @@ public class Application implements CommandLineRunner{
 		printValidationResult(violations);			
 
 		//Validate a subset of constraints using groups  
-		violations = validator.validate(user, PrimaryUserInfo.class);		
+		violations = validator.validate(user, ContactInfoGroup.class);		
 		printValidationResult(violations);
 				
 		

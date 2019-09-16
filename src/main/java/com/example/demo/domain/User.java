@@ -14,7 +14,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.example.demo.validation.PrimaryUserInfo;
+import com.example.demo.validation.ContactInfoGroup;
 import com.example.demo.validation.StringUpperCase;
 
 public class User {
@@ -23,7 +23,7 @@ public class User {
 	@StringUpperCase(message ="username must be all uppercase")
 	private String username;
 	
-	@NotBlank(message = "Name cannot be null", groups = {PrimaryUserInfo.class})
+	@NotBlank(message = "Name cannot be null")
 	private String firstName;
 	
 	@NotBlank(message = "Name cannot be null")
@@ -37,14 +37,16 @@ public class User {
 	private LocalDate dateOfBirth;
 		
 	
-	@Email(message = "Email should be valid")
+	@Email(message = "Email should be valid",
+			groups = {ContactInfoGroup.class})
 	private String email;
 	
 	@Pattern(regexp="^[2-9]\\d{2}-\\d{3}-\\d{4}$", message= "Phone should be hyphen separated US phone number,"
-			+ " of the form ANN-NNN-NNNN, where A is between 2 and 9 and N is between 0 and 9 ")
+			+ " of the form ANN-NNN-NNNN, where A is between 2 and 9 and N is between 0 and 9 "
+			, groups = {ContactInfoGroup.class})
 	private String phone;
 	
-	
+	@NotNull(message = "Address is required", groups = {ContactInfoGroup.class})
 	private Address Address; 	
 	
 	@Min(value = 18, message = "Age should not be less than 18")  
